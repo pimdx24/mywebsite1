@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Maddox's Personal Website</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #1c1c1e;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #20232a;
+            color: #ffffff;
+            padding: 2rem 1rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeSlideDown 1s 0.2s forwards;
+        }
+        @keyframes fadeSlideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        section {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 {
+            color: #cf3719;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #cf3719;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+    
+        img.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #20232a;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        a {
+            color: #cf3719;
+            text-decoration: none;
+            transition: color 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ff5a36;
+            box-shadow: 0 2px 0 #ff5a36;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Maddox Lin</h1>
+        <p>Engineer | Software Developer | Student</p>
+    </header>
+
+    <main>
+        <section class="fade-in">
+            <h2>About Me</h2>
+            <p>Hello! I’m Maddox Lin, currently an Electrical and Computer Engineering undergraduate at UT Austin. Welcome to my website!</p>
+            <img src="IMG_2980.jpg" alt="Picture of me" style="width:400px; height:auto; display:block; margin-left:auto; margin-right:auto;"/>
+        </section>
+
+        <section class="fade-in">
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="#">Recipe Applet</a></li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <h2>Resume</h2>
+            <p><a href="maddox-lin-resume-2025.pdf" target="_blank">Download My Resume (PDF)</a></p>
+        </section>
+
+        <section class="fade-in">
+            <h2>Contact</h2>
+            <p>You can reach me via email at <a href="mailto:pi.mdx24@gmail.com">pi.mdx24@gmail.com</a> or connect with me on <a href="https://www.linkedin.com/in/maddox-lin-0b4284298/">LinkedIn</a>.</p>
+        </section>
+    </main>
+
+    <!-- JavaScript Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
